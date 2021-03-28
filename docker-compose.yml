@@ -5,8 +5,8 @@ services:
     container_name: binance-bot
     build:
       context: ./
-      target: dev-stage
-      # target: production-stage
+      # target: dev-stage
+      target: production-stage
     networks:
       - internal
     volumes:
@@ -17,8 +17,8 @@ services:
       - .env
     restart: unless-stopped
     environment:
-      - BINANCE_MODE=test
-      # - BINANCE_MODE=live
+      # - BINANCE_MODE=test
+      - BINANCE_MODE=live
       - BINANCE_JOBS_ALIVE_ENABLED=true
       - BINANCE_JOBS_TRAILING_TRADE_ENABLED=true
       - BINANCE_JOBS_TRAILING_TRADE_SYMBOLS=["BTCUSDT", "ETHUSDT", "BNBUSDT"]
@@ -37,7 +37,7 @@ services:
     logging:
       driver: 'json-file'
       options:
-        max-size: '50m'
+        max-size: '15m'
 
   binance-redis:
     container_name: binance-redis
